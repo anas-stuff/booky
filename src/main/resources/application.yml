@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: booky
+  datasource:
+    url: jdbc:postgresql://localhost:5432/booky_db
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # FIXME: change to update before production
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  error:
+    include-message: always
+jwt:
+  secret: HttCzb2uSFyflHmLv8b0h0TcPYmoSOKwc8Ra4GLi7mA2oMzgJ7gFzXbmybxSjtw8
+  token:
+    duration: 1440 # 2 months
