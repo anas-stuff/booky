@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/borrow")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -21,5 +23,10 @@ public class BorrowingRecordController {
     @PutMapping("/{bookId}/patron/{patronId}")
     public ResponseEntity<BorrowingRecord> returnBook(@PathVariable Long bookId, @PathVariable Long patronId) throws BorrowingRecordNotFoundException {
         return ResponseEntity.ok(service.returnBook(bookId, patronId));
+    }
+
+    @GetMapping("/records")
+    public List<BorrowingRecord> getBorrowingRecords() {
+        return service.getBorrowingRecords();
     }
 }
