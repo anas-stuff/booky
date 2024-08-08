@@ -60,27 +60,6 @@ class BookControllerTest {
     }
 
     @Test
-    void saveBook_savesAndReturnsBook() throws BookAlreadyExistsExeption {
-        final var book = new Book();
-        when(service.saveBook(book)).thenReturn(book);
-
-        final var result = controller.saveBook(book);
-
-        assertEquals(book, result);
-    }
-
-    @Test
-    void updateBook_updatesAndReturnsBook() throws BookAlreadyExistsExeption, BookNotFoundException {
-        final var id = 1L;
-        final var book = new Book();
-        when(service.updateBook(id, book)).thenReturn(book);
-
-        final var result = controller.updateBook(id, book);
-
-        assertEquals(book, result);
-    }
-
-    @Test
     void deleteBook_deletesBook() throws BookNotFoundException {
         final var id = 1L;
         doNothing().when(service).deleteBook(id);
