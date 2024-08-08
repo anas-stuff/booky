@@ -28,7 +28,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> saveBook(@RequestBody Book book) throws BookAlreadyExistsExeption {
+    public ResponseEntity<Book> saveBook(@RequestBody final Book book) throws BookAlreadyExistsExeption {
         return ResponseEntity.ok(service.saveBook(book));
     }
 

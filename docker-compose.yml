@@ -1,5 +1,5 @@
 services:
-  db:
+  booky_api_db:
     image: postgres:latest
     environment:
       POSTGRES_DB: booky_db
@@ -8,17 +8,18 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - app-network
+      - booky_api_app-network
+    restart: always
 
-  app:
+  booky_api_app:
     image: my-spring-boot-app
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - booky_api_db
     networks:
-      - app-network
+      - booky_api_app-network
 
 networks:
-  app-network:
+  booky_api_app-network:
     driver: bridge

@@ -10,8 +10,4 @@ public enum Role {
      * Can do anything except managing admins.
      */
     Admin,
-    /**
-     * Can list and see the books details
-     */
-    User,
 }

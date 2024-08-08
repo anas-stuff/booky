@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Objects;
@@ -19,15 +22,23 @@ public class SecurityConfiguration {
         return http
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/admins/**").hasRole("ADMIN")
+                        .requestMatchers("/api/admin/login").permitAll()
+                        // only super admins can access any endpoint under /api/admin with  PUT and DELETE methods
+                        .requestMatchers(request -> (Objects.equals(request.getMethod(), "DELETE") || Objects.equals(request.getMethod(), "PUT")) &&
+                                request.getServletPath().startsWith("/api/admin")).hasRole("SUPER_ADMIN")
                         .requestMatchers(request -> Objects.equals(request.getMethod(), "PUT")).hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults())
                 .headers(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
-                .logout(Customizer.withDefaults())
+                // Disable CSRF (stateless)
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

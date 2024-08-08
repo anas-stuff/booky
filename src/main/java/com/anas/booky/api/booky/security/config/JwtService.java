@@ -53,9 +53,9 @@ public class JwtService {
     /**
      * Extracts a specific claim from the JWT using a resolver function.
      *
-     * @param jwt the JWT token
+     * @param jwt      the JWT token
      * @param resolver the function to resolve the claim
-     * @param <T> the type of the claim
+     * @param <T>      the type of the claim
      * @return the claim extracted from the token
      */
     public <T> T extractClaim(final String jwt, final Function<Claims, T> resolver) {
@@ -76,7 +76,7 @@ public class JwtService {
     /**
      * Generates a JWT token with additional claims for the given user details.
      *
-     * @param claims additional claims to include in the token
+     * @param claims      additional claims to include in the token
      * @param userDetails the user details
      * @return the generated JWT token
      */
@@ -113,7 +113,7 @@ public class JwtService {
     /**
      * Validates the JWT token against the user details.
      *
-     * @param jwt the JWT token
+     * @param jwt         the JWT token
      * @param userDetails the user details
      * @return true if the token is valid, false otherwise
      */
