@@ -29,9 +29,17 @@ public class BorrowingRecordService {
         return repository.findById(id);
     }
 
+    @Transactional
     public BorrowingRecord borrowBook(final Long bookId, final Long patronId) {
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found"));
         Patron patron = patronRepository.findById(patronId).orElseThrow(() -> new RuntimeException("Patron not found"));
+        //  Check if there is an length copies of the book
+        if (book.getQuantity() <= 0) {
+            throw new RuntimeException("No copies available");
+        }
+
+        book.setQuantity(book.getQuantity() - 1); // Decrease the quantity of the book
+
         BorrowingRecord record = BorrowingRecord.builder()
                 .book(book)
                 .patron(patron)
