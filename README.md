@@ -66,3 +66,16 @@ The API will be accessible at `http://localhost:8080/`.
 ## API Documentation
 
 The API documentation is available at `http://localhost:8080/swagger-ui/index.html`.
+
+### API expected flow
+
+1. Login to the system using the `/login` endpoint.
+    > At the start of the  application, there is only one super admin user with the following credentials:
+   > - Username: `root@root.local`
+   > - Password: `root`
+2. Use the token received from the login response to access other endpoints.
+3. Create another low privileged admin using the `/api/admin/add` endpoint.
+4. Use the new admin credentials to login and access the system.
+5. Create books and patrons using the `/api/books` and `/api/patrons` endpoints.
+6. Borrow and return books using the `/api/borrow` and `/api/return` endpoints.
+7. View borrowing records using the `/api/borrow/records` endpoint.
