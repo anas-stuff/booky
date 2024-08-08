@@ -21,7 +21,10 @@ The Library Management System is a RESTful API built using Spring Boot. It allow
 - **Database**: PostgreSQL.
 - **JPA/Hibernate**: For ORM and database interactions.
 - **JUnit/Mockito**: For unit testing.
-- **Spring Security**: For authentication and authorization (optional).
+- **Spring Security**: For authentication and authorization.
+- **Swagger**: For API documentation.
+- **Lombok**: For reducing boilerplate code.
+- **WebFlux**: For reactive programming.
 - **Docker**: For containerization (optional).
 
 ## Setup and Installation
@@ -62,4 +65,4 @@ The API will be accessible at `http://localhost:8080/`.
 
 ## API Documentation
 
-The API documentation is available at `http://localhost:8080/swagger-ui.html`.
+The API documentation is available at `http://localhost:8080/swagger-ui/index.html`.

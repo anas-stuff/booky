@@ -25,3 +25,8 @@ jwt:
   secret: HttCzb2uSFyflHmLv8b0h0TcPYmoSOKwc8Ra4GLi7mA2oMzgJ7gFzXbmybxSjtw8
   token:
     duration: 1440 # 2 months
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    operations-sorter:  method

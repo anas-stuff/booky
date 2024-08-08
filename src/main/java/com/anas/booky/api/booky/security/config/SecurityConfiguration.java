@@ -23,6 +23,8 @@ public class SecurityConfiguration {
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/admin/login").permitAll()
+                        .requestMatchers("/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
                         // only super admins can access any endpoint under /api/admin with  PUT and DELETE methods
                         .requestMatchers(request -> (Objects.equals(request.getMethod(), "DELETE") || Objects.equals(request.getMethod(), "PUT")) &&
                                 request.getServletPath().startsWith("/api/admin")).hasRole("SUPER_ADMIN")

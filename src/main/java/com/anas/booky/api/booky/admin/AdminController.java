@@ -18,7 +18,7 @@ public class AdminController {
         return service.saveAdmin(admin);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<String > login(@RequestBody final  LoginRequest request) {
         final  var admin = service.checkPassword(request.getEmail(), request.getPassword());
         return admin.map(ResponseEntity::ok).orElse(ResponseEntity.badRequest().build());
